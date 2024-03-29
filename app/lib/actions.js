@@ -115,33 +115,33 @@ export const updateUser = async (formData) => {
     revalidatePath("/dashboard/users");
   };
 
-  export const authenticate = async (formData) => {
-    const { name, password } = Object.fromEntries(formData);
+//   export const authenticate = async (formData) => {
+//     const { name, password } = Object.fromEntries(formData);
 
-    try {
-        await signIn("credentials", { name, password });
-    } catch (err) {
-        if (err.code === "credentials" || err.name === "CredentialsSignin") {
-            // Handle specific error related to wrong credentials
-            return "Wrong Credentials";
-        } else {
-            // Handle other errors by rethrowing them
-            throw err;
-        }
-    }
-}
+//     try {
+//         await signIn("credentials", { name, password });
+//     } catch (err) {
+//         if (err.code === "credentials" || err.name === "CredentialsSignin") {
+//             // Handle specific error related to wrong credentials
+//             return "Wrong Credentials";
+//         } else {
+//             // Handle other errors by rethrowing them
+//             throw err;
+//         }
+//     }
+// }
 
 
-//   export const authenticate = async(formData) => {
-//     const {name,password} = Object.fromEntries(formData);
+  export const authenticate = async(formData) => {
+    const {name,password} = Object.fromEntries(formData);
 
-//    const res =  await signIn("credentials", {name,password},{redirect:false});
+   const res =  await signIn("credentials", {name,password},{redirect:false});
 
-//    if(res?.ok){
-//     console.log("res",res);
-//     signIn("credentials", {name,password});
-//    } else {
-//     console.log("res",res);
-//     throw new Error("Failed to login")
-//    }
-//   }
+   if(res?.ok){
+    console.log("res",res);
+    signIn("credentials", {name,password});
+   } else {
+    console.log("res",res);
+    throw new Error("Failed to login")
+   }
+  }
